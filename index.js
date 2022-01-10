@@ -119,19 +119,19 @@ app.get("/auth",validateToken, async(request,response)=>{
 app.post("/insertgame", async(request,response)=>{
     const client = await createconnections()
     const add_data = request.body
-    const result = await client.db("MainDataBase").collection("tripdata").insertMany([add_data])
+    const result = await client.db("MainDataBase").collection("game").insertMany([add_data])
     response.send(result)
 })
 app.get("/getgame", async(request,response)=>{
     const client = await createconnections()
-    const result = await client.db("MainDataBase").collection("tripdata").find({}).toArray()
+    const result = await client.db("MainDataBase").collection("game").find({}).toArray()
     response.send(result)
 
 })
 app.delete("/deletegame/:id" , async(request,response)=>{
 const id = request.params.id
 const client = await createconnections()
-const user= await client.db("MainDataBase").collection("tripdata").deleteOne({_id: new mongodb.ObjectId(id)})
+const user= await client.db("MainDataBase").collection("game").deleteOne({_id: new mongodb.ObjectId(id)})
    console.log(id)
    console.log(user)
    response.send(user)
@@ -142,7 +142,7 @@ app.put("/patchgame/:id", async(request, response) => {
     const id = request.params.id;
     const client = await createconnections();
     
-    const user= await client.db("MainDataBase").collection("tripdata").updateOne({_id:new mongodb.ObjectId(id)},{$set:{"name":request.body.name,"pic":request.body.pic}})
+    const user= await client.db("MainDataBase").collection("game").updateOne({_id:new mongodb.ObjectId(id)},{$set:{"name":request.body.name,"pic":request.body.pic}})
     // console.log(user)
     response.send(user)
  
