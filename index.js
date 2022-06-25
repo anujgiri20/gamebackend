@@ -26,7 +26,7 @@ async function createconnections() {
 app.use(express.json())
 app.use(cookieParser())
 app.get("/",(req,res)=>{
-    res.send("hi all")
+    res.send("hi all of you")
 })
 app.use(CORS())
 
