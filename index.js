@@ -116,15 +116,15 @@ app.get("/auth",validateToken, async(request,response)=>{
    response.send("token validate")
 
 })
-app.post("/insertgame", async(request,response)=>{
+app.post("/insertbank", async(request,response)=>{
     const client = await createconnections()
     const add_data = request.body
-    const result = await client.db("MainDataBase").collection("game").insertMany([add_data])
+    const result = await client.db("MainDataBase").collection("bank").insertMany([add_data])
     response.send(result)
 })
-app.get("/getgame", async(request,response)=>{
+app.get("/getbank", async(request,response)=>{
     const client = await createconnections()
-    const result = await client.db("MainDataBase").collection("game").find({}).toArray()
+    const result = await client.db("MainDataBase").collection("bank").find({}).toArray()
     response.send(result)
 
 })
